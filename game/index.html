@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lantern Lane — Spot the Difference</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏮</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">🏮 Lantern Lane <span class="tagline">— Spot the Difference</span></div>
+  <div id="hud" class="hud hidden">
+    <span id="level-name" class="hud-item">Morning Market · Easy</span>
+    <span id="found-count" class="hud-item strong">0 / 7 found</span>
+    <span class="hud-item timer"><span id="timer-text">150s</span><span class="timer-track"><span id="timer-bar"></span></span></span>
+    <span class="hud-item">Score <strong id="score-text">0</strong></span>
+    <button id="hint-button" class="btn small" type="button">💡 Hint (3)</button>
+    <button id="mute-button" class="btn small" type="button">🔊 Sound</button>
+    <button id="restart-button" class="btn small" type="button">↻ Restart</button>
+    <button id="menu-button" class="btn small" type="button">☰ Levels</button>
+  </div>
+</header>
+
+<main>
+  <!-- Title / level select -->
+  <section id="screen-menu" class="screen active">
+    <h1>🏮 Lantern Lane</h1>
+    <p class="intro">Two pictures hang side by side on the lane. They look the same —
+      but <strong>seven differences</strong> are hiding between them. Click a
+      difference on either picture to circle it. A wrong click costs 25 points
+      and 5 seconds. Find them all before the lanterns burn down!</p>
+    <div class="levels">
+      <article class="level-card" data-level="0" tabindex="0">
+        <div class="level-emoji">🌅</div>
+        <h2>1 · Morning Market</h2>
+        <p class="diff-label">Easy · 150s</p>
+        <p class="stars">★☆☆</p>
+        <p class="desc">A sleepy fruit stall wakes up. Big, friendly changes.</p>
+        <p class="best">Not played yet</p>
+      </article>
+      <article class="level-card" data-level="1" tabindex="0">
+        <div class="level-emoji">⛵</div>
+        <h2>2 · Harbor at Dusk</h2>
+        <p class="diff-label">Medium · 150s</p>
+        <p class="stars">★★☆</p>
+        <p class="desc">Boats come home as the light goes. Changes hide in the busy water.</p>
+        <p class="best">Not played yet</p>
+      </article>
+      <article class="level-card" data-level="2" tabindex="0">
+        <div class="level-emoji">🎆</div>
+        <h2>3 · Lantern Festival</h2>
+        <p class="diff-label">Hard · 180s</p>
+        <p class="stars">★★★</p>
+        <p class="desc">A night of paper light and fireworks. Small changes at the edges.</p>
+        <p class="best">Not played yet</p>
+      </article>
+    </div>
+    <p class="keys">Keys: <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> pick a level · <kbd>H</kbd> hint (−50 pts) ·
+      <kbd>M</kbd> mute · <kbd>R</kbd> restart · <kbd>Esc</kbd> back here</p>
+    <p class="credit">An original game: every scene is drawn by hand in code — no borrowed art, music or names.</p>
+  </section>
+
+  <!-- Play screen -->
+  <section id="screen-game" class="screen">
+    <div class="panels">
+      <figure class="panel">
+        <figcaption>Picture A — the original</figcaption>
+        <canvas id="panel-left" width="640" height="420"></canvas>
+      </figure>
+      <figure class="panel">
+        <figcaption>Picture B — spot what changed</figcaption>
+        <canvas id="panel-right" width="640" height="420"></canvas>
+      </figure>
+    </div>
+    <div class="below">
+      <div class="found-box">
+        <h3>Differences <span id="found-pips"></span></h3>
+        <ul id="found-list"></ul>
+      </div>
+      <p id="hint-text" class="hint-text">Stuck? Press H or the Hint button — it costs 50 points.</p>
+    </div>
+  </section>
+
+  <!-- Level clear -->
+  <section id="screen-clear" class="screen overlay-screen">
+    <div class="overlay">
+      <h2 id="clear-title">Level complete!</h2>
+      <p id="clear-stars" class="big-stars">★★★</p>
+      <p id="clear-detail"></p>
+      <button id="next-button" class="btn big" type="button">Next level →</button>
+    </div>
+  </section>
+
+  <!-- Level failed -->
+  <section id="screen-fail" class="screen overlay-screen">
+    <div class="overlay">
+      <h2>Out of time! ⏰</h2>
+      <p id="fail-detail"></p>
+      <button id="retry-button" class="btn big" type="button">Try again ↻</button>
+      <button id="again-button" class="btn big ghost" type="button">Back to levels</button>
+    </div>
+  </section>
+</main>
+
+<footer>Click a difference on either picture · wrong clicks cost 25 points and 5 seconds · hints cost 50 points</footer>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
